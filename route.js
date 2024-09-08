@@ -1,0 +1,12 @@
+const express=require("express");
+const r=express.Router();
+const {addevent,userReg,eventDetails,updatedetails,deletereg}=require("../controller/controll");
+const check=require("../middleware/event");
+const check1=require("../middleware/user_reg");
+const check2=require("../middleware/updateDetails");
+r.route("/addevent").post(check(),addevent);
+r.route("/registeruser").post(check1(),userReg);
+r.route("/eventdetails/:Event_id").get(eventDetails);
+r.route("/updatedetails/:User_id/:Event_id").patch(check2(),updatedetails);
+r.route("/deletedetails/:User_id").delete(deletereg);
+module.exports=r;
